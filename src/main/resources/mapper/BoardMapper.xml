@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.study.dawn.dao.BoardDao">
+
+    <insert id="create" parameterType="BoardVO">
+        insert into board(title, content, writer, reg_tm)
+        values(#{title}, #{content}, #{writer}, now())
+    </insert>
+
+    <select id="readBoard" resultType="HashMap" parameterType="Integer">
+        select bno, title, content, writer, reg_tm, upt_tm
+        from board
+        where bno = #{bno}
+    </select>
+
+    <update id="update" parameterType="BoardVO">
+        update board
+        set title = #{title}
+        and content = #{content}
+        where bno = #{bno}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        update board
+        set del_tm = now()
+        where bno = #{bno}
+    </delete>
+
+</mapper>
