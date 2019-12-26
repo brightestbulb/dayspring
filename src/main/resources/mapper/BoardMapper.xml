@@ -5,21 +5,20 @@
 
 <mapper namespace="com.study.dawn.dao.BoardDao">
 
-    <insert id="create" parameterType="BoardVO">
+    <insert id="create" parameterType="HashMap">
         insert into board(title, content, writer, reg_tm)
         values(#{title}, #{content}, #{writer}, now())
     </insert>
 
-    <select id="readBoard" resultType="HashMap" parameterType="Integer">
+    <select id="read" resultType="HashMap" parameterType="Integer">
         select bno, title, content, writer, reg_tm, upt_tm
         from board
         where bno = #{bno}
     </select>
 
-    <update id="update" parameterType="BoardVO">
+    <update id="update" parameterType="HashMap">
         update board
-        set title = #{title}
-        and content = #{content}
+        set title = #{title}, content = #{content}
         where bno = #{bno}
     </update>
 

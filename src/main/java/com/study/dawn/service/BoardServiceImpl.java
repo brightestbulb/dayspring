@@ -16,18 +16,18 @@ public class BoardServiceImpl implements BoardService {
     private BoardDao dao;
 
     @Override
-    public void regist(BoardVO vo){
-        dao.create(vo);
+    public void regist(HashMap<String, Object> map){
+        dao.create(map);
     }
 
     @Override
     public HashMap<String, Object> read(int bno) {
-        return dao.readBoard(bno);
+        return dao.read(bno);
     }
 
     @Override
-    public void modify(BoardVO vo){
-        dao.update(vo);
+    public void modify(HashMap<String, Object> map){
+        dao.update(map);
     }
 
     @Override

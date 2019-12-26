@@ -6,11 +6,11 @@ import java.util.HashMap;
 
 public interface BoardService {
 
-    public void regist(BoardVO vo) throws Exception;
+    public void regist(HashMap<String, Object> map) throws Exception;
 
     public HashMap<String, Object> read(int bno) throws Exception;
 
-    public void modify(BoardVO vo) throws Exception;
+    public void modify(HashMap<String, Object> map) throws Exception;
 
     public void remove(int bno) throws Exception;
 }

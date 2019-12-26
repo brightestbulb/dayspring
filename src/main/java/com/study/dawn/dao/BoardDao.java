@@ -8,11 +8,11 @@ import java.util.HashMap;
 @Repository
 public interface BoardDao {
 
-    public void create(BoardVO vo);
+    public void create(HashMap<String, Object> map);
 
-    public HashMap<String, Object> readBoard(int bno);
+    public HashMap<String, Object> read(int bno);
 
-    public void update(BoardVO vo);
+    public void update(HashMap<String, Object> map);
 
     public void delete(int bno);
 
