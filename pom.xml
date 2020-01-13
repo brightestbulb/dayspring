@@ -87,6 +87,11 @@
 			<optional>true</optional> <!--restart 를 원하지 않을 경우 false -->
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>

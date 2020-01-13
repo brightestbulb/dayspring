@@ -1,6 +1,7 @@
 package com.study.dawn.controller;
 
 import com.study.dawn.common.ErrorCode;
+import com.study.dawn.common.EventLog;
 import com.study.dawn.exception.NotFoundException;
 import com.study.dawn.service.BoardService;
 import com.study.dawn.vo.BoardVO;
@@ -19,6 +20,7 @@ public class BoardApiController {
     private BoardService boardService;
 
     @PostMapping
+    @EventLog(logCode="CREATE")
     public ResponseEntity insertPost(@RequestBody BoardVO boardVO) throws Exception{
 
         try {
@@ -47,6 +49,7 @@ public class BoardApiController {
     }
 
     @GetMapping("/{bno}")
+    @EventLog(logCode="READ", key = "bno")
     public ResponseEntity readPost(@PathVariable("bno") int bno) throws Exception{
 
         try {
@@ -69,6 +72,7 @@ public class BoardApiController {
     }
 
     @PutMapping("/{bno}")
+    @EventLog(logCode="UPDATE", key = "bno")
     public ResponseEntity updatePost(@PathVariable int bno, @RequestBody BoardVO boardVO) throws Exception{
 
         try {
@@ -95,6 +99,7 @@ public class BoardApiController {
     }
 
     @DeleteMapping("/{bno}")
+    @EventLog(logCode="DELETE", key = "bno")
     public ResponseEntity deletePost(@PathVariable("bno") int bno) throws Exception{
 
         try {
