@@ -21,7 +21,7 @@ public class BoardApiController {
 
     @PostMapping
     @EventLog(logCode="CREATE")
-    public ResponseEntity insertPost(@RequestBody BoardVO boardVO) throws Exception{
+    public ResponseEntity insert(@RequestBody BoardVO boardVO) throws Exception{
 
         try {
             String title = boardVO.getTitle();
@@ -50,7 +50,7 @@ public class BoardApiController {
 
     @GetMapping("/{bno}")
     @EventLog(logCode="READ", key = "bno")
-    public ResponseEntity readPost(@PathVariable("bno") int bno) throws Exception{
+    public ResponseEntity read(@PathVariable("bno") int bno) throws Exception{
 
         try {
             if(StringUtils.isEmpty(bno)){
@@ -73,7 +73,7 @@ public class BoardApiController {
 
     @PutMapping("/{bno}")
     @EventLog(logCode="UPDATE", key = "bno")
-    public ResponseEntity updatePost(@PathVariable int bno, @RequestBody BoardVO boardVO) throws Exception{
+    public ResponseEntity update(@PathVariable int bno, @RequestBody BoardVO boardVO) throws Exception{
 
         try {
             String title = boardVO.getTitle();
@@ -100,7 +100,7 @@ public class BoardApiController {
 
     @DeleteMapping("/{bno}")
     @EventLog(logCode="DELETE", key = "bno")
-    public ResponseEntity deletePost(@PathVariable("bno") int bno) throws Exception{
+    public ResponseEntity delete(@PathVariable("bno") int bno) throws Exception{
 
         try {
             if(StringUtils.isEmpty(bno)){

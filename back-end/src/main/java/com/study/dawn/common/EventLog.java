@@ -7,7 +7,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
-@Retention(RetentionPolicy.CLASS)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface EventLog {
 
     String logCode();
@@ -44,9 +44,9 @@ class CommonLog implements LogCode{
         String key = eventLog.key();
         String code = eventLog.logCode();
         String type = eventLog.type();
-        String value=request.getParameter(key);
+        String value = request.getParameter(key);
 
-        String logMsg = type + " " +Code.valueOf(code).getLogCode() + " " + key+ "=" + value;
+        String logMsg = type + " / " +Code.valueOf(code).getLogCode() + " " + key+ "=" + value;
 
         return logMsg;
     }
