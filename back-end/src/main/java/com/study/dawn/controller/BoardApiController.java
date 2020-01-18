@@ -1,6 +1,7 @@
 package com.study.dawn.controller;
 
 import com.study.dawn.common.ErrorCode;
+import com.study.dawn.common.EventLog;
 import com.study.dawn.exception.NotFoundException;
 import com.study.dawn.service.BoardService;
 import com.study.dawn.vo.BoardVO;
@@ -19,7 +20,8 @@ public class BoardApiController {
     private BoardService boardService;
 
     @PostMapping
-    public ResponseEntity insertPost(@RequestBody BoardVO boardVO) throws Exception{
+    @EventLog(logCode="CREATE")
+    public ResponseEntity insert(@RequestBody BoardVO boardVO) throws Exception{
 
         try {
             String title = boardVO.getTitle();
@@ -47,7 +49,8 @@ public class BoardApiController {
     }
 
     @GetMapping("/{bno}")
-    public ResponseEntity readPost(@PathVariable("bno") int bno) throws Exception{
+    @EventLog(logCode="READ", key = "bno")
+    public ResponseEntity read(@PathVariable("bno") int bno) throws Exception{
 
         try {
             if(StringUtils.isEmpty(bno)){
@@ -69,7 +72,8 @@ public class BoardApiController {
     }
 
     @PutMapping("/{bno}")
-    public ResponseEntity updatePost(@PathVariable int bno, @RequestBody BoardVO boardVO) throws Exception{
+    @EventLog(logCode="UPDATE", key = "bno")
+    public ResponseEntity update(@PathVariable int bno, @RequestBody BoardVO boardVO) throws Exception{
 
         try {
             String title = boardVO.getTitle();
@@ -95,7 +99,8 @@ public class BoardApiController {
     }
 
     @DeleteMapping("/{bno}")
-    public ResponseEntity deletePost(@PathVariable("bno") int bno) throws Exception{
+    @EventLog(logCode="DELETE", key = "bno")
+    public ResponseEntity delete(@PathVariable("bno") int bno) throws Exception{
 
         try {
             if(StringUtils.isEmpty(bno)){
