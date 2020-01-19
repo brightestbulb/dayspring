@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class BoardTest {
+public class BoardApiTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -46,7 +46,7 @@ public class BoardTest {
 
     @Test
     public void putTest() throws Exception{
-        mockMvc.perform(put("/v1/board/9")
+        mockMvc.perform(put("/v1/board/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"title\":\"Update MockMvc test title\",\"content\":\"Update MockMvc test content\",\"writer\":\"admin\", \"reg_date\":\"2020-01-06\"}"))
                 .andExpect(status().isOk())
