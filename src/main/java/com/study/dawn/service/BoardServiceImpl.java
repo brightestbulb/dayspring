@@ -14,8 +14,8 @@ public class BoardServiceImpl implements BoardService {
     private BoardDao dao;
 
     @Override
-    public void regist(HashMap<String, Object> map){
-        dao.create(map);
+    public int regist(HashMap<String, Object> map){
+        return dao.create(map);
     }
 
     @Override
@@ -24,13 +24,13 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void modify(HashMap<String, Object> map){
-        dao.update(map);
+    public int modify(HashMap<String, Object> map){
+        return dao.update(map);
     }
 
     @Override
-    public void remove(int id){
-        dao.delete(id);
+    public int remove(int id){
+        return dao.delete(id);
     }
 
     @Override

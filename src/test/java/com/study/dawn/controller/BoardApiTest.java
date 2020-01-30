@@ -1,4 +1,4 @@
-package com.study.dawn;
+package com.study.dawn.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -9,13 +9,13 @@ import java.util.List;
 @Repository
 public interface BoardDao {
 
-    public void create(HashMap<String, Object> map);
+    public int create(HashMap<String, Object> map);
 
     public HashMap<String, Object> read(int id);
 
-    public void update(HashMap<String, Object> map);
+    public int update(HashMap<String, Object> map);
 
-    public void delete(int id);
+    public int delete(int id);
 
     public List<HashMap<String,Object>> getAllList();
 
