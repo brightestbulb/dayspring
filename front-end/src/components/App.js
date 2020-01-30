@@ -8,18 +8,15 @@ class App extends Component {
 
     state = {
         input : '',
-        todos:[
-            // { id:0, text:'토요일에 리액트 공부', done:true },
-            // { id:1, text:'토요일 오후에 카페', done:false }
-        ]
+        todos: []
     }
 
     componentDidMount(){
         let getBoard = () => {
-            axios.get("http://localhost:8080/v1/board/1").then(response => {
+            axios.get("http://localhost:8080/v1/board/").then(response => {
                 console.log(response.data);
             this.setState({
-                todos : [response.data]
+                todos : response.data
             })
         });
         }

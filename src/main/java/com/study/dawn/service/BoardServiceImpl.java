@@ -1,13 +1,11 @@
 package com.study.dawn.service;
 
 import com.study.dawn.dao.BoardDao;
-import com.study.dawn.vo.BoardVO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -21,8 +19,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public HashMap<String, Object> read(int bno) {
-        return dao.read(bno);
+    public HashMap<String, Object> read(int id) {
+        return dao.read(id);
     }
 
     @Override
@@ -31,7 +29,12 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void remove(int bno){
-        dao.delete(bno);
+    public void remove(int id){
+        dao.delete(id);
+    }
+
+    @Override
+    public List<HashMap<String, Object>> getAllList(){
+        return dao.getAllList();
     }
 }

@@ -16,9 +16,9 @@ public class BoardController {
     @RequestMapping("/test")
     private String jspTest() throws Exception {
 
-        int bno = 1;
+        int id = 1;
         System.out.println("------------------------------------------");
-        System.out.println( boardService.read(bno));
+        System.out.println( boardService.read(id));
         System.out.println("------------------------------------------");
 
         return "test";

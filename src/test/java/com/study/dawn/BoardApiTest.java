@@ -29,10 +29,10 @@ public class BoardApiTest {
         mockMvc.perform(get("/v1/board/1")
                 .accept(MediaType.APPLICATION_JSON_UTF8).characterEncoding("UTF-8"))
                 .andDo(print())
-                .andExpect(jsonPath("$.bno").value("1"))
+                .andExpect(jsonPath("$.id").value("1"))
                 .andExpect(jsonPath("$.writer").value("admin"))
-                .andExpect(jsonPath("$.title").value("첫번째 글 입니다."))
-                .andExpect(jsonPath("$.content").value("첫번째 테스트 게시글 입니다."));
+                .andExpect(jsonPath("$.title").value("첫번째 글"))
+                .andExpect(jsonPath("$.content").value("첫번째 내용"));
     }
 
     @Test

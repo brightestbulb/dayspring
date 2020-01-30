@@ -6,26 +6,31 @@
 <mapper namespace="com.study.dawn.dao.BoardDao">
 
     <insert id="create" parameterType="HashMap">
-        insert into board(title, content, writer, reg_tm)
-        values(#{title}, #{content}, #{writer}, now())
+        insert into board(title, content, writer)
+        values(#{title}, #{content}, #{writer})
     </insert>
 
     <select id="read" resultType="HashMap" parameterType="Integer">
-        select bno, title, content, writer, reg_tm, upt_tm
+        select id, title, content, writer
         from board
-        where bno = #{bno}
+        where id = #{id}
     </select>
 
     <update id="update" parameterType="HashMap">
         update board
         set title = #{title}, content = #{content}
-        where bno = #{bno}
+        where id = #{id}
     </update>
 
     <delete id="delete" parameterType="Integer">
         update board
         set del_tm = now()
-        where bno = #{bno}
+        where id = #{id}
     </delete>
+
+    <select id="getAllList" resultType="HashMap">
+        select id, title, done
+        from board
+    </select>
 
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/board")
@@ -48,16 +49,16 @@ public class BoardApiController {
         }
     }
 
-    @GetMapping("/{bno}")
-    @EventLog(logCode="READ", key = "bno")
-    public ResponseEntity read(@PathVariable("bno") int bno) throws Exception{
+    @GetMapping("/{id}")
+    @EventLog(logCode="READ", key = "id")
+    public ResponseEntity read(@PathVariable("id") int id) throws Exception{
 
         try {
-            if(StringUtils.isEmpty(bno)){
+            if(StringUtils.isEmpty(id)){
                 throw new NotFoundException(ErrorCode.INTERNAL_SERVER_ERROR, "Please enter a required value.");
             }
 
-            HashMap<String, Object> map  = boardService.read(bno);
+            HashMap<String, Object> map  = boardService.read(id);
 
             if(StringUtils.isEmpty(map)){
                 throw new NotFoundException(ErrorCode.INTERNAL_SERVER_ERROR, "No data");
@@ -71,9 +72,9 @@ public class BoardApiController {
         }
     }
 
-    @PutMapping("/{bno}")
-    @EventLog(logCode="UPDATE", key = "bno")
-    public ResponseEntity update(@PathVariable int bno, @RequestBody BoardVO boardVO) throws Exception{
+    @PutMapping("/{id}")
+    @EventLog(logCode="UPDATE", key = "id")
+    public ResponseEntity update(@PathVariable int id, @RequestBody BoardVO boardVO) throws Exception{
 
         try {
             String title = boardVO.getTitle();
@@ -84,7 +85,7 @@ public class BoardApiController {
             }
 
             HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("bno", bno);
+            map.put("id", id);
             map.put("title", title);
             map.put("content", content);
             boardService.modify(map);
@@ -98,19 +99,30 @@ public class BoardApiController {
         }
     }
 
-    @DeleteMapping("/{bno}")
-    @EventLog(logCode="DELETE", key = "bno")
-    public ResponseEntity delete(@PathVariable("bno") int bno) throws Exception{
+    @DeleteMapping("/{id}")
+    @EventLog(logCode="DELETE", key = "id")
+    public ResponseEntity delete(@PathVariable("id") int id) throws Exception{
 
         try {
-            if(StringUtils.isEmpty(bno)){
+            if(StringUtils.isEmpty(id)){
                 throw new NotFoundException(ErrorCode.INTERNAL_SERVER_ERROR, "Please enter a required value.");
             }
-            boardService.remove(bno);
+            boardService.remove(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch(NotFoundException ne){
             throw new NotFoundException(ErrorCode.INTERNAL_SERVER_ERROR, ne.getMessage(), ne);
         }catch(Exception e){
+            throw new Exception(e.getMessage(), e);
+        }
+    }
+
+    @GetMapping("/")
+    @EventLog(logCode="READ")
+    public ResponseEntity getAllList() throws Exception{
+        try{
+            List<HashMap<String,Object>> list = boardService.getAllList();
+            return new ResponseEntity<>(list, HttpStatus.OK);
+        }catch (Exception e){
             throw new Exception(e.getMessage(), e);
         }
     }
