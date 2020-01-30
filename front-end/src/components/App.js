@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageTemplate from './PageTemplate';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
+import axios from 'axios';
 
 class App extends Component {
 
@@ -15,14 +16,11 @@ class App extends Component {
 
     componentDidMount(){
         let getBoard = () => {
-            axios.get("http://10.10.88.15:8080/v1/board/1").then(response => {
+            axios.get("http://localhost:8080/v1/board/1").then(response => {
                 console.log(response.data);
-
             this.setState({
                 todos : [response.data]
             })
-
-
         });
         }
         getBoard();

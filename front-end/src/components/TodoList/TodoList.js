@@ -8,7 +8,7 @@ class TodoList extends Component {
         const todoList = todos.map(
             todo => (
                 <TodoItem key={todo.id} done={todo.done} onToggle={()=> onToggle(todo.id)} 
-                    onRemove={() => onRemove(todo.id)}>{todo.text}</TodoItem>
+                    onRemove={() => onRemove(todo.id)}>{todo.title}</TodoItem>
             )
         );
 
