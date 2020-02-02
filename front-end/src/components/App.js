@@ -14,7 +14,6 @@ class App extends Component {
     componentDidMount(){
         let getBoard = () => {
             axios.get("http://localhost:8080/v1/board/").then(response => {
-                console.log(response.data);
             this.setState({
                 todos : response.data
             })
@@ -74,6 +73,9 @@ class App extends Component {
     }
 
     handleRemove = (id) =>{
+
+        axios.delete("localhost:8080/v1/board/"+id).then(response => {});
+
         const { todos } = this.state;
         const index = todos.findIndex(todo => todo.id === id);
 

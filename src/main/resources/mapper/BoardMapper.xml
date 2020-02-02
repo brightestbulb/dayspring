@@ -35,6 +35,7 @@
     <select id="getAllList" resultType="HashMap">
         SELECT id, title, done
         FROM board
+        WHERE del_tm is null
     </select>
 
 </mapper>
