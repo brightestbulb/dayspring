@@ -13,7 +13,7 @@ public interface BoardDao {
 
     public HashMap<String, Object> read(int id);
 
-    public int update(HashMap<String, Object> map);
+    public int toggleDone(HashMap<String, Object> map);
 
     public int delete(int id);
 

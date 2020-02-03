@@ -26,20 +26,17 @@ public class BoardApiController {
 
         try {
             String title = boardVO.getTitle();
-            String content = boardVO.getContent();
             String writer = boardVO.getWriter();
 
-            if(StringUtils.isEmpty(title) || StringUtils.isEmpty(content) || StringUtils.isEmpty(writer)){
+            if(StringUtils.isEmpty(title) || StringUtils.isEmpty(writer)){
                 throw new NotFoundException(ErrorCode.INTERNAL_SERVER_ERROR, "Please enter a required value.");
             }
 
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("title", title);
-            map.put("content", content);
             map.put("writer", writer);
 
             boardService.regist(map);
-
             return new ResponseEntity<>(HttpStatus.OK);
 
         }catch(NotFoundException ne){
@@ -77,18 +74,16 @@ public class BoardApiController {
     public ResponseEntity update(@PathVariable int id, @RequestBody BoardVO boardVO) throws Exception{
 
         try {
-            String title = boardVO.getTitle();
-            String content = boardVO.getContent();
+            Boolean done = boardVO.isDone();
 
-            if(StringUtils.isEmpty(title) || StringUtils.isEmpty(content)){
+            if(StringUtils.isEmpty(done)){
                 throw new NotFoundException(ErrorCode.INTERNAL_SERVER_ERROR, "Please enter a required value.");
             }
 
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("id", id);
-            map.put("title", title);
-            map.put("content", content);
-            boardService.modify(map);
+            map.put("done", done);
+            boardService.toggleDone(map);
 
             return new ResponseEntity<>(HttpStatus.OK);
 

@@ -6,8 +6,8 @@
 <mapper namespace="com.study.dawn.dao.BoardDao">
 
     <insert id="create" parameterType="HashMap">
-        INSERT INTO board(title, content, writer)
-        VALUES(#{title}, #{content}, #{writer})
+        INSERT INTO board(title, writer)
+        VALUES(#{title}, #{writer})
 
         <selectKey keyProperty="id" resultType="Integer">
           SELECT LAST_INSERT_ID()
@@ -15,14 +15,14 @@
     </insert>
 
     <select id="read" resultType="HashMap" parameterType="Integer">
-        SELECT id, title, content, writer
+        SELECT id, title, writer, done
         FROM board
         WHERE id = #{id}
     </select>
 
-    <update id="update" parameterType="HashMap">
+    <update id="toggleDone" parameterType="HashMap">
         UPDATE board
-        SET title = #{title}
+        SET done = #{done}
         WHERE id = #{id}
     </update>
 

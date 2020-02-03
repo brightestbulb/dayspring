@@ -11,7 +11,7 @@ public interface BoardService {
 
     public HashMap<String, Object> read(int id) throws Exception;
 
-    public int modify(HashMap<String, Object> map) throws Exception;
+    public int toggleDone(HashMap<String, Object> map) throws Exception;
 
     public int remove(int id) throws Exception;
 

@@ -24,8 +24,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public int modify(HashMap<String, Object> map){
-        return dao.update(map);
+    public int toggleDone(HashMap<String, Object> map){
+        return dao.toggleDone(map);
     }
 
     @Override

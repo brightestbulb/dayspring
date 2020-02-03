@@ -31,30 +31,37 @@ public class BoardDaoTest {
         map.put("title", "테스트 글 입니다.");
 
         //INSERT
-        boardService.regist(map);
         Assert.assertTrue(boardService.regist(map)>0);
 
         int new_id = (Integer)map.get("id");
 
         //READ
-        HashMap<String, Object> map2 = boardService.read(new_id);
-        Assert.assertTrue(map2.get("title").equals("테스트 글 입니다."));
+        HashMap<String, Object> result = boardService.read(new_id);
+        Assert.assertTrue(result.get("title").equals("테스트 글 입니다."));
 
         //UPDATE
         map.put("id", new_id);
-        map.put("title", "수정된 글 입니다.");
-        Assert.assertTrue(boardService.modify(map)>0);
+        map.put("done", true);
+        Assert.assertTrue(boardService.toggleDone(map)>0);
 
-        map2 = boardService.read(new_id);
-        Assert.assertTrue(map2.get("title").equals("수정된 글 입니다."));
+        result = boardService.read(new_id);
+        Assert.assertTrue(result.get("done").equals(true));
 
         //DELETE
         Assert.assertTrue(boardService.remove(new_id)>0);
     }
 
     @Test
-    public void insertUpdateDeleteTest() throws Exception{
+    public void getAllListTest() throws Exception{
 
+        //when
+        List<HashMap<String, Object>> list = boardService.getAllList();
+
+        //then
+        Assert.assertTrue(list.size()>0);
+        Assert.assertTrue((Long)list.get(0).get("id")==3L);
+        Assert.assertTrue(list.get(0).get("title").equals("세번째 글"));
+        Assert.assertTrue(list.get(0).get("done").equals(false));
     }
 
 }
