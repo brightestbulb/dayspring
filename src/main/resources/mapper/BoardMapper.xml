@@ -37,5 +37,4 @@
         FROM board
         WHERE del_tm is null
     </select>
-
 </mapper>
