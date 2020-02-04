@@ -75,7 +75,6 @@ public class BoardApiController {
 
         try {
             Boolean done = boardVO.isDone();
-
             if(StringUtils.isEmpty(done)){
                 throw new NotFoundException(ErrorCode.INTERNAL_SERVER_ERROR, "Please enter a required value.");
             }
