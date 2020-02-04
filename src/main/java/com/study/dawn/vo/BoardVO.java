@@ -11,7 +11,6 @@ public class BoardVO {
 
     private int id;
     private String title;
-    private String content;
     private String writer;
     private Date del_tm;
     private boolean done;

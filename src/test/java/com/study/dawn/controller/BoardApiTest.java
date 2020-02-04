@@ -1,4 +1,4 @@
-package com.study.dawn;
+package com.study.dawn.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,15 +31,14 @@ public class BoardApiTest {
                 .andDo(print())
                 .andExpect(jsonPath("$.id").value("1"))
                 .andExpect(jsonPath("$.writer").value("admin"))
-                .andExpect(jsonPath("$.title").value("첫번째 글"))
-                .andExpect(jsonPath("$.content").value("첫번째 내용"));
+                .andExpect(jsonPath("$.title").value("첫번째 글"));
     }
 
     @Test
     public void postTest() throws Exception{
         mockMvc.perform(post("/v1/board")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"title\":\"MockMvc test title\",\"content\":\"MockMvc test content\",\"writer\":\"admin\", \"reg_date\":\"2020-01-03\"}"))
+                .content("{\"title\":\"MockMvc test title\",\"writer\":\"admin\", \"reg_date\":\"2020-01-03\"}"))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print()); // test 응답 결과에 대한 모든 내용 출력
     }
@@ -48,7 +47,7 @@ public class BoardApiTest {
     public void putTest() throws Exception{
         mockMvc.perform(put("/v1/board/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"title\":\"Update MockMvc test title\",\"content\":\"Update MockMvc test content\",\"writer\":\"admin\", \"reg_date\":\"2020-01-06\"}"))
+                .content("{\"title\":\"Update MockMvc test title\",\"writer\":\"admin\", \"reg_date\":\"2020-01-06\"}"))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print()); // test 응답 결과에 대한 모든 내용 출력
     }

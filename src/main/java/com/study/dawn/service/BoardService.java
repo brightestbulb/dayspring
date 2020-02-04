@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface BoardService {
 
-    public void regist(HashMap<String, Object> map) throws Exception;
+    public int regist(HashMap<String, Object> map) throws Exception;
 
     public HashMap<String, Object> read(int id) throws Exception;
 
-    public void modify(HashMap<String, Object> map) throws Exception;
+    public int toggleDone(HashMap<String, Object> map) throws Exception;
 
-    public void remove(int id) throws Exception;
+    public int remove(int id) throws Exception;
 
     public List<HashMap<String,Object>> getAllList() throws Exception;
 }
