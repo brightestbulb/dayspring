@@ -3,7 +3,6 @@ import TodoItem from '../TodoItem';
 
 class TodoList extends Component {
     render(){
-
         const { todos, onToggle, onRemove } = this.props;
         const todoList = todos.map(
             todo => (
@@ -11,7 +10,6 @@ class TodoList extends Component {
                     onRemove={() => onRemove(todo.id)}>{todo.title}</TodoItem>
             )
         );
-
         return(
             <div>
                 {todoList}
