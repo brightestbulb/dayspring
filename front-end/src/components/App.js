@@ -22,9 +22,8 @@ class App extends Component {
         getBoard();
     }
 
-    id= 1
     getId = () =>{
-        return ++this.id;
+        return this.state.todos[this.state.todos.length-1].id+1;
     }
 
     handleChange = (e) => {
@@ -35,13 +34,14 @@ class App extends Component {
     }
 
     handleInsert = () => {
-        const { todos, input} = this.state;
-
+        const {todos, input} = this.state;
         const newTodo = {
-            text: input,
+            title: input,
             done: false,
             id: this.getId()
         };
+        axios.post('http://localhost:8080/v1/board/'
+            , {title:input, writer:"admin"});
 
         this.setState({
             todos:[...todos, newTodo],
@@ -54,6 +54,10 @@ class App extends Component {
 
         // id로 배열의 index를 찾는다.
         const index = todos.findIndex(todo => todo.id === id);
+        const done = todos[index].done;
+ 
+        axios.put('http://localhost:8080/v1/board/'+id
+            , {done:!done});
 
         // 찾은 데이터의 done 값을 반전시킨다.
         const toggled = {
@@ -74,7 +78,7 @@ class App extends Component {
 
     handleRemove = (id) =>{
 
-        axios.delete("localhost:8080/v1/board/"+id).then(response => {});
+        axios.delete("http://localhost:8080/v1/board/"+id).then(response => {});
 
         const { todos } = this.state;
         const index = todos.findIndex(todo => todo.id === id);
